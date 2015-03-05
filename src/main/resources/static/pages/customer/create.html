@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>ROMA</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+        <script src="/js/customer.js"></script>
+    </head>
+    <body>
+        <h2>Customer Info</h2>
+        <form class="form-horizontal" id="customer_form" role="form">
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="ssn">SSN:</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" id="ssn" placeholder="Ex. 123456-1234">
+                    <button type="button" class="btn btn-info" id="checkSSN">Check for Customer</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">First Name:</label>
+                <div class="col-sm-10">
+                    <input type="text" name="first_name" class="form-control" id="first_name" placeholder="first name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Last Name:</label>
+                <div class="col-sm-10">
+                    <input type="text" name="last_name" class="form-control" id="last_name" placeholder="last name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Mail: </label>
+                <div class="col-sm-10">
+                    <input type="text" name="mail" class="form-control" id="mail" placeholder="ex. fredde990@gmail.com">
+                </div>  
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Phone:</label>
+                <div class="col-sm-10">
+                    <input type="text" name="phone" class="form-control" id="phone" placeholder="10 numbers">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Street:</label>
+                <div class="col-sm-10">
+                    <input type="text" name="street" class="form-control" id="street" placeholder="Ex. Övre husargatan">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">City:</label>
+                <div class="col-sm-10">
+                    <input type="text" name="city" class="form-control" id="city" placeholder="Ex. Estocolmo">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Zip:</label>
+                <div class="col-sm-10">
+                    <input type="text" name="zip" class="form-control" id="zip" placeholder="Ex. 41422">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Gender:</label>
+                <div class="col-sm-10">
+                    <input type="text" name="gender" class="form-control" id="gender" placeholder="M or F">
+                </div>
+            </div>
+
+            <div class="form-group">        
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default" id="submit">Submit</button>
+                </div>
+            </div>
+        </form>
+
+    </body>
+</html>

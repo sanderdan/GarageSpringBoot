@@ -1,5 +1,6 @@
 $(document).ready(function () {
-    $("#service_form").submit(function (event) {
+    $('#vehicle_form').submit(function (event) {
+        $('#submit_eMessage').empty();
         alert("booom");
         event.preventDefault();
         var vehicle = {};
@@ -21,6 +22,7 @@ $(document).ready(function () {
                 console.log(jqXHR);
                 console.log(textStatus);
                 console.log(errorThrown);
+                $('#submit_eMessage').append(errorThrown);
             }
         });
     });
@@ -31,19 +33,23 @@ $(document).ready(function () {
 });
 
 function checkLicensePlate() {
-    $.ajax({
-        url: "/vehicle",
+    $('#eMessage').empty();
+    $.ajax({    
+        url: "/vehicle/licensePlate/"+$('#license_plate').val(),
         type: 'GET',
         dataType: 'json',
         data: ($('#license_plate').val()),
         contentType: 'application/json',
         mimeType: 'application/json',
         success: function (data) {
-            alert(data.id + " " + data.name);
-            // get customer info and add to fields same thing with car
+            $('#manufacturer').val(data.manufacturer);
+            $('#model').val(data.model);
+            $('#model_year').val(data.model_year);
+            $('#fuel').val(data.fuel);
+            $('#odometer').val(data.odometer);
         },
         error: function (data, status, er) {
-            alert("error: " + data + " status: " + status + " er:" + er);
+            $('#eMessage').append(status);
         }
     });
 }

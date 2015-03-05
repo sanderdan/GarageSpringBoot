@@ -1,0 +1,62 @@
+body {
+    font-family: 'Share', cursive;
+}
+body h1 {
+    text-align: center;
+}
+body a,
+body a:focus {
+    color: black;
+}
+#columnMenu {
+    margin-top: 15px;
+}
+#customerColumn {
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+}
+#customerColumn h3 {
+    color: green;
+}
+#customerColumn a:hover {
+    color: green;
+    text-decoration: none;
+}
+#vehicleColumn {
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+}
+#vehicleColumn h3 {
+    color: orange;
+}
+#vehicleColumn a:hover {
+    color: orange;
+    text-decoration: none;
+}
+#mechanicColumn {
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+}
+#mechanicColumn h3 {
+    color: red;
+}
+#mechanicColumn a:hover {
+    color: red;
+    text-decoration: none;
+}
+#serviceColumn {
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+}
+#serviceColumn h3 {
+    color: blue;
+}
+#serviceColumn a:hover {
+    color: blue;
+    text-decoration: none;
+}

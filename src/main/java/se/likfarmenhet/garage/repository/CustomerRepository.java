@@ -10,5 +10,7 @@ import se.likfarmenhet.garage.model.Customer;
  */
 @Repository
 public interface CustomerRepository extends CrudRepository<Customer, Integer> {
+    
+    public Customer findBySsn(String ssn);
         
 }

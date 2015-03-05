@@ -20,6 +20,11 @@ public class VehicleController {
     @Autowired
     VehicleRepository vehicleRepository;
 
+//    @RequestMapping(value = "html", method = RequestMethod.GET)
+//    public String startHtml() {
+//        return "/create.html";
+//    }
+    
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public Vehicle createVehicle(@RequestBody Vehicle vehicle) {
         System.out.println(vehicle);

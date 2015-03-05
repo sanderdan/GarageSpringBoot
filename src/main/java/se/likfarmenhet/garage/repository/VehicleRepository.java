@@ -15,4 +15,5 @@ import se.likfarmenhet.garage.model.Vehicle;
 public interface VehicleRepository extends CrudRepository<Vehicle, Integer> {
 
     public Vehicle findByLicensePlate(String licensePlate);
+
 }

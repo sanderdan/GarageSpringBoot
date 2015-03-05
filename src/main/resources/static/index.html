@@ -1,31 +1,92 @@
-<!DOCTYPE html>
 <html>
     <head>
-        <title>Start Page</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>ROMA</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+        <link href='http://fonts.googleapis.com/css?family=Share' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css/index.css">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <form id="customer">
-            <input type="text" name="first_name">
-            <br/>
-            <input type="text" name="last_name">
-            <br/>
-            <input type="email" name="mail">
-            <br/>
-            <input type="tel" name="phone">
-            <br/>
-            <input type="text" name="street">
-            <br/>
-            <input type="text" name="city">
-            <br/>
-            <input type="text" name="zip">
-            <br/>
-            <input type="text" name="gender">
-            <br/>
-            <input type="text" name="ssn">
-            <br/>
-            <a href="/customer/all">hej</a>
-                <input type="submit" value="submit">
-        </form>
+
+        <div class="container">
+            <h1>PROFFSKODS BILFIRMA</h1>
+            <div class="row" id="columnMenu">
+                <div class="col-md-3" id="customerColumn">
+                    <h3>Customer</h3>
+                    <table class="table">
+                        <tr>
+                            <th><a href="/pages/customer/view.html">View all customers</a></th>
+                        </tr>
+                        <tr>
+                            <th><a >Add a new customer</a></th>
+                        </tr>
+                        <tr>
+                            <th><a>Edit an existing customer</a></th>
+                        </tr>
+                        <tr>
+                            <th><a>Remove a customer</a></th>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-3" id="vehicleColumn">
+                    <h3>Vehicle</h3>
+                    <table class="table">
+                        <tr>
+                            <th><a>View all vehicles</a></th>
+                        </tr>
+                        <tr>
+                            <th><a href="/vehicle/create">Add a new vehicle</a></th>
+                        </tr>
+                        <tr>
+                            <th><a>Edit an existing vehicle</a></th>
+                        </tr>
+                        <tr>
+                            <th><a>Remove a vehicle</a></th>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-3" id="mechanicColumn">
+                    <h3>Mechanic</h3>
+                    <table class="table">
+                        <tr>
+                            <th><a>View all mechanics</a></th>
+                        </tr>
+                        <tr>
+                            <th><a>Add a new mechanic</a></th>
+                        </tr>
+                        <tr>
+                            <th><a>Edit an existing mechanic</a></th>
+                        </tr>
+                        <tr>
+                            <th><a>Remove a mechanic</a></th>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-3" id="serviceColumn">
+                    <h3>Service</h3>
+                    <table class="table">
+                        <tr>
+                            <th><a>View all services</a></th>
+                        </tr>
+                        <tr>
+                            <th><a>Create a service</a></th>
+                        </tr>
+                        <tr>
+                            <th><a>Edit an existing service</a></th>
+                        </tr>
+                        <tr>
+                            <th><a>Remove a service</a></th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
     </body>
 </html>

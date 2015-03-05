@@ -18,10 +18,10 @@ import se.likfarmenhet.garage.repository.CustomerRepository;
 @RequestMapping("/customer")    
 public class CustomerController {
 
-    @RequestMapping(value = "html", method = RequestMethod.GET)
-    public String startHtml() {
-        return "/customer.html";
-    }
+//    @RequestMapping(value = "html", method = RequestMethod.GET)
+//    public String startHtml() {
+//        return "view.html";
+//    }
 
     @Autowired
     CustomerRepository customerRepository;
@@ -37,7 +37,13 @@ public class CustomerController {
         Customer customer = customerRepository.findOne(customer_id);
         return customer;
     }
-
+    
+    @RequestMapping(value = "/ssn/{ssn}", method = RequestMethod.GET)
+    public Customer findBySsn(@PathVariable String ssn) {
+        Customer customer = customerRepository.findBySsn(ssn);
+        return customer;
+    }
+    
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public Iterable<Customer> findAllCustomers() {
         Iterable<Customer> customers = customerRepository.findAll();

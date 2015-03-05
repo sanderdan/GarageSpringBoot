@@ -17,8 +17,8 @@ public class Vehicle implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer vehicle_id;
-    @Column
-    private String license_plate;
+    @Column(name = "license_plate")
+    private String licensePlate;
     @Column
     private String manufacturer;
     @Column
@@ -35,7 +35,7 @@ public class Vehicle implements Serializable {
 
     @Override
     public String toString() {
-        return "Vehicle{" + "vehicle_id=" + vehicle_id + ", license_plate=" + license_plate + ", manufacturer=" + manufacturer + ", model=" + model + ", model_year=" + model_year + ", fuel=" + fuel + ", odometer=" + odometer + '}';
+        return "Vehicle{" + "vehicle_id=" + vehicle_id + ", license_plate=" + licensePlate + ", manufacturer=" + manufacturer + ", model=" + model + ", model_year=" + model_year + ", fuel=" + fuel + ", odometer=" + odometer + '}';
     }
 
     public Integer getVehicle_id() {
@@ -43,11 +43,11 @@ public class Vehicle implements Serializable {
     }
 
     public String getLicense_plate() {
-        return license_plate;
+        return licensePlate;
     }
 
     public void setLicense_plate(String license_plate) {
-        this.license_plate = license_plate;
+        this.licensePlate = license_plate;
     }
 
     public String getManufacturer() {
