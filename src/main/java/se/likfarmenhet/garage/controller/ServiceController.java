@@ -17,17 +17,15 @@ import se.likfarmenhet.garage.repository.ServiceRepository;
 @RequestMapping(value = "/service")
 public class ServiceController {
 
-    @RequestMapping(value = "html", method = RequestMethod.GET)
-    public String startHtml() {
-        return "/service.html";
-    }
     
     @Autowired
     ServiceRepository serviceRepository;
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public Service createService(@RequestBody Service service) {
+        System.out.println(service);
         service = serviceRepository.save(service);
+        System.out.println(service);
         return service;
     }
     

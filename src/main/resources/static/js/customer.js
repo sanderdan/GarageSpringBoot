@@ -1,9 +1,7 @@
 $(document).ready(function () {
-//    getAll();
-
+    getAll();
     $('#customer_form').submit(function (event) {
         $('#submit_eMessage').empty();
-        alert("booom");
         event.preventDefault();
         var customer = {};
         $(this).serializeArray().map(function (x) {
@@ -32,6 +30,9 @@ $(document).ready(function () {
     $('#checkSSN').click(function () {
         checkSSN();
     });
+
+
+
 });
 
 //To show stuff as a <table>
@@ -39,27 +40,33 @@ function getAll() {
     $.getJSON("/customer/all", function (data) {
         var tr;
         for (var i = 0; i < data.length; i++) {
-            tr = $('<tr/>');
-            tr.append("<td>" + data[i].customer_id + "</td>");
-            tr.append("<td>" + data[i].first_name + "</td>");
-            tr.append("<td>" + data[i].last_name + "</td>");
-            tr.append("<td>" + data[i].mail + "</td>");
-            tr.append("<td>" + data[i].phone + "</td>");
-            tr.append("<td>" + data[i].street + "</td>");
-            tr.append("<td>" + data[i].city + "</td>");
-            tr.append("<td>" + data[i].zip + "</td>");
-            tr.append("<td>" + data[i].gender + "</td>");
-            tr.append("<td>" + data[i].ssn + "</td>");
-            tr.append('<button type="button" class="btn btn-danger">X</button>');
+            (function (i) {
+                var id = data[i].customer_id;
+                tr = $('<tr/>');
+                tr.append("<td>" + data[i].customer_id + "</td>");
+                tr.append("<td>" + data[i].first_name + "</td>");
+                tr.append("<td>" + data[i].last_name + "</td>");
+                tr.append("<td>" + data[i].mail + "</td>");
+                tr.append("<td>" + data[i].phone + "</td>");
+                tr.append("<td>" + data[i].street + "</td>");
+                tr.append("<td>" + data[i].city + "</td>");
+                tr.append("<td>" + data[i].zip + "</td>");
+                tr.append("<td>" + data[i].gender + "</td>");
+                tr.append("<td>" + data[i].ssn + "</td>");
+                tr.append('<button id="' + data[i].customer_id + '">X</button>')
+                        .click(function () {
+                            removeCustomer(id);
+                        });
 
-            $('table').append(tr);
+                $('table').append(tr);
+            }(i));
         }
     });
 }
 
+
 function checkSSN() {
     $('#eMessage').empty();
-    alert("clicked");
     $.ajax({
         url: "/customer/ssn/" + $('#ssn').val(),
         type: 'GET',
@@ -81,4 +88,27 @@ function checkSSN() {
             $('#eMessage').append(status);
         }
     });
+}
+
+function removeCustomer(id) {
+    var customer_id = id;
+    $.ajax({
+        type: 'POST',
+        url: "/customer/remove/" + customer_id,
+        data: JSON.stringify(customer_id),
+        datatype: 'json',
+        contentType: 'application/json',
+        async: false,
+        success: function (data) {
+            result = data;
+            alert("customer was removed");
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown);
+            $('#submit_eMessage').append(errorThrown);
+        }
+    });
+    alert(id);
 }

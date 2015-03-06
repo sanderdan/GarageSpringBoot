@@ -60,3 +60,7 @@ body a:focus {
     color: blue;
     text-decoration: none;
 }
+#button {
+    color: red;
+    background-color: red;
+}

@@ -1,5 +1,6 @@
 package se.likfarmenhet.garage.controller;
 
+import java.sql.SQLException;
 import static javax.management.Query.value;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,20 +16,24 @@ import se.likfarmenhet.garage.repository.CustomerRepository;
  * @author Alexander
  */
 @RestController
-@RequestMapping("/customer")    
+@RequestMapping("/customer")
 public class CustomerController {
-
-//    @RequestMapping(value = "html", method = RequestMethod.GET)
-//    public String startHtml() {
-//        return "view.html";
-//    }
 
     @Autowired
     CustomerRepository customerRepository;
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public Customer createCustomer(@RequestBody Customer customer) {
-        customer = customerRepository.save(customer);
+        System.out.println(customer);
+        String ssn = customer.getSsn();
+        if (ssn.equalsIgnoreCase(findBySsn(ssn).getSsn())) {
+            System.out.println("trying to update");
+            updateCustomer(customer);
+        } else {
+            System.out.println("didnt find customer with same ssn, saving");
+            customer = customerRepository.save(customer);
+        }
+
         return customer;
     }
 
@@ -37,13 +42,13 @@ public class CustomerController {
         Customer customer = customerRepository.findOne(customer_id);
         return customer;
     }
-    
+
     @RequestMapping(value = "/ssn/{ssn}", method = RequestMethod.GET)
     public Customer findBySsn(@PathVariable String ssn) {
         Customer customer = customerRepository.findBySsn(ssn);
         return customer;
     }
-    
+
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public Iterable<Customer> findAllCustomers() {
         Iterable<Customer> customers = customerRepository.findAll();
@@ -57,11 +62,11 @@ public class CustomerController {
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
     public Customer updateCustomer(@RequestBody Customer customer) {
-        if (customer.getCustomer_id() == null) {
-            throw new RuntimeException("NOT FOUND");
-        }
+//        if (customer.getCustomer_id() == null) {
+//            throw new RuntimeException("NOT FOUND");
+//        }
 
-        Customer original = customerRepository.findOne(customer.getCustomer_id());
+        Customer original = customerRepository.findBySsn(customer.getSsn());
 
         original.setFirst_name(customer.getFirst_name());
         original.setLast_name(customer.getLast_name());
