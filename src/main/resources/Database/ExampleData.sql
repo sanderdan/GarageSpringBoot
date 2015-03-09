@@ -9,15 +9,14 @@ VALUES (1,'Sten','Hoijt','stenen@gmail.se','0702234567','Rubinvägen 56','Lödö
 (7,'Olof','Johansson','loffe@hotmail.se','0708216549','Stureplanen 11C','Ålem','52141','M','880627-5542'),
 (8,'Hanna','Vreckt','vreckingball@msn.com','0700223344','Tåggatan 2','Dals-Ed','74822','F','630228-5504'),
 (9,'Torbjörn','Strutz','strutzen@hotmail.com','0707456789','Operavägen 21','Hjulsta','41252','M','590806-2201'),
-(10,'Håkan','Kethis','hkhkhkhk@telia.se','0702583691','Guntorpsvägen 3','Lagringstad','11010','M','851111-5774');
-INSERT INTO Customer(customer_id, first_name, last_name, ssn)
-VALUES (11,'Robert','Gröt','551224-4242'),
-(12,'Fredrika','Danielsson','891124-7744'),
-(13,'Tyra','Adielsson','880908-4202'),
-(14,'Dennis','Tjallander','860630-4411'),
-(15,'Bernt','Fredriksson','570809-4211'),
-(16,'Barbro','Duns','691201-3325'),
-(17,'Richardo','DeRossi','740507-4241');
+(10,'Håkan','Kethis','hkhkhkhk@telia.se','0702583691','Guntorpsvägen 3','Lagringstad','11010','M','851111-5774'),
+(11,'Robert','Gröt', '', '', '', '', '', '', '551224-4242'),
+(12,'Fredrika','Danielsson', '', '', '', '', '', '', '891124-7744'),
+(13,'Tyra','Adielsson', '', '', '', '', '', '', '880908-4202'),
+(14,'Dennis','Tjallander', '', '', '', '', '', '', '860630-4411'),
+(15,'Bernt','Fredriksson', '', '', '', '', '', '', '570809-4211'),
+(16,'Barbro','Duns', '', '', '', '', '', '', '691201-3325'),
+(17,'Richardo','DeRossi', '', '', '', '', '', '', '740507-4241');
 
 -- MECHANIC
 INSERT INTO Mechanic(employee_number, first_name, last_name)

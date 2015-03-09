@@ -26,8 +26,8 @@ $(document).ready(function () {
             }
         });
     });
-    
-    $('#checkLicensePlate').click(function(){
+
+    $('#checkLicensePlate').click(function () {
         checkLicensePlate();
     });
 });
@@ -36,15 +36,22 @@ function getAll() {
     $.getJSON("/vehicle/all", function (data) {
         var tr;
         for (var i = 0; i < data.length; i++) {
-            tr = $('<tr/>');
-            tr.append("<td>" + data[i].vehicle_id + "</td>");
-            tr.append("<td>" + data[i].license_plate + "</td>");
-            tr.append("<td>" + data[i].manufacturer + "</td>");
-            tr.append("<td>" + data[i].model + "</td>");
-            tr.append("<td>" + data[i].model_year + "</td>");
-            tr.append("<td>" + data[i].fuel + "</td>");
-            tr.append("<td>" + data[i].odometer + "</td>");
-            $('table').append(tr);
+            (function (i) {
+                var id = data[i].vehicle_id;
+                tr = $('<tr/>');
+                tr.append("<td>" + data[i].vehicle_id + "</td>");
+                tr.append("<td>" + data[i].licensePlate + "</td>");
+                tr.append("<td>" + data[i].manufacturer + "</td>");
+                tr.append("<td>" + data[i].model + "</td>");
+                tr.append("<td>" + data[i].model_year + "</td>");
+                tr.append("<td>" + data[i].fuel + "</td>");
+                tr.append("<td>" + data[i].odometer + "</td>");
+                tr.append('<button id="' + data[i].customer_id + '">X</button>')
+                        .click(function () {
+                            removeVehicle(id);
+                        });
+                $('table').append(tr);
+            }(i));
         }
     });
 }
@@ -52,11 +59,11 @@ function getAll() {
 
 function checkLicensePlate() {
     $('#eMessage').empty();
-    $.ajax({    
-        url: "/vehicle/licensePlate/"+$('#license_plate').val(),
+    $.ajax({
+        url: "/vehicle/licensePlate/" + $('#licensePlate').val(),
         type: 'GET',
         dataType: 'json',
-        data: ($('#license_plate').val()),
+        data: ($('#licensePlate').val()),
         contentType: 'application/json',
         mimeType: 'application/json',
         success: function (data) {

@@ -20,18 +20,12 @@ public class VehicleController {
     @Autowired
     VehicleRepository vehicleRepository;
 
-//    @RequestMapping(value = "html", method = RequestMethod.GET)
-//    public String startHtml() {
-//        return "/create.html";
-//    }
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public Vehicle createVehicle(@RequestBody Vehicle vehicle) {
-        
         System.out.println(vehicle);
-        String lp = vehicle.getLicense_plate();
+        String lp = vehicle.getLicensePlate();
         try {
-//            (ssn.equalsIgnoreCase(findBySsn(ssn).getSsn())) {
-            if (lp.equalsIgnoreCase(findByLicensePlate(lp).getLicense_plate())) {
+            if (lp.equalsIgnoreCase(findByLicensePlate(lp).getLicensePlate())) {
                 System.out.println("trying to update");
                 updateVehicle(vehicle);
             }
@@ -42,36 +36,14 @@ public class VehicleController {
         return vehicle;
     }
         
-        
-//    }
-//        System.out.println(vehicle);
-//        String license_plate = vehicle.getLicense_plate();
-//
-//        try {
-//            if (license_plate.equalsIgnoreCase(getByVehicleLicensePlate(license_plate).getLicense_plate())) {
-//                System.out.println("Found vehicle with same license plate, trying to update.");
-//                System.out.println(vehicle);
-////                updateVehicle(vehicle);
-//            }
-//
-//        } catch (NullPointerException e) {
-//            System.out.println("Didn't find vehicle with same license plate, saving.");
-//            vehicle = vehicleRepository.save(vehicle);
-//            System.out.println(vehicle);
-//        }
-//
-//        return vehicle;
-//
-//    }
-
     @RequestMapping(value = "/{vehicle_id}", method = RequestMethod.GET)
     public Vehicle getVehicleById(@PathVariable int vehicle_id) {
         return vehicleRepository.findOne(vehicle_id);
     }
 
-    @RequestMapping(value = "/licensePlate/{license_plate}", method = RequestMethod.GET)
-    public Vehicle findByLicensePlate(@PathVariable String license_plate) {
-        Vehicle vehicle = vehicleRepository.findByLicensePlate(license_plate);
+    @RequestMapping(value = "/licensePlate/{licensePlate}", method = RequestMethod.GET)
+    public Vehicle findByLicensePlate(@PathVariable String licensePlate) {
+        Vehicle vehicle = vehicleRepository.findByLicensePlate(licensePlate);
         return vehicle;
     }
 
@@ -92,9 +64,8 @@ public class VehicleController {
 //            throw new RuntimeException("NOT FOUND");
 //        }
 
-        Vehicle original = (Vehicle) vehicleRepository.findOne(vehicle.getVehicle_id());
+        Vehicle original = vehicleRepository.findByLicensePlate(vehicle.getLicensePlate());;
 
-        original.setLicense_plate(vehicle.getLicense_plate());
         original.setManufacturer(vehicle.getManufacturer());
         original.setModel(vehicle.getModel());
         original.setModel_year(vehicle.getModel_year());

@@ -11,7 +11,7 @@ CREATE TABLE `Customer` (
   `street` varchar(45) DEFAULT NULL,
   `city` varchar(45) DEFAULT NULL,
   `zip` varchar(45) DEFAULT NULL,
-  `gender` enum('M','F') DEFAULT NULL,
+  `gender` enum('M','F', '') DEFAULT NULL,
   `ssn` varchar(45) NOT NULL,
   PRIMARY KEY (`customer_id`),
   UNIQUE KEY `ssn_UNIQUE` (`ssn`)
@@ -35,7 +35,7 @@ CREATE TABLE `Vehicle` (
   `notes` varchar(256) DEFAULT NULL,
   PRIMARY KEY (`vehicle_id`),
   UNIQUE KEY `license_plate_UNIQUE` (`license_plate`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;+
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `Service` (
   `service_id` int(11) NOT NULL AUTO_INCREMENT,

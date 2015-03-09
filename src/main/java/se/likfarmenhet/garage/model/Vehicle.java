@@ -35,19 +35,15 @@ public class Vehicle implements Serializable {
 
     @Override
     public String toString() {
-        return "Vehicle{" + "vehicle_id=" + vehicle_id + ", license_plate=" + licensePlate + ", manufacturer=" + manufacturer + ", model=" + model + ", model_year=" + model_year + ", fuel=" + fuel + ", odometer=" + odometer + '}';
+        return "Vehicle{" + "vehicle_id=" + vehicle_id + ", licensePlate=" + licensePlate + ", manufacturer=" + manufacturer + ", model=" + model + ", model_year=" + model_year + ", fuel=" + fuel + ", odometer=" + odometer + '}';
     }
 
     public Integer getVehicle_id() {
         return vehicle_id;
     }
 
-    public String getLicense_plate() {
+    public String getLicensePlate() {
         return licensePlate;
-    }
-
-    public void setLicense_plate(String license_plate) {
-        this.licensePlate = license_plate;
     }
 
     public String getManufacturer() {
