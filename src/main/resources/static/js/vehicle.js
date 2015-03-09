@@ -2,7 +2,6 @@ $(document).ready(function () {
     getAll();
     $('#vehicle_form').submit(function (event) {
         $('#submit_eMessage').empty();
-        alert("booom");
         event.preventDefault();
         var vehicle = {};
         $(this).serializeArray().map(function (x) {
@@ -71,5 +70,29 @@ function checkLicensePlate() {
             $('#eMessage').append(status);
         }
     });
+}
+
+
+function removeVehicle(id) {
+    var vehicle_id = id;
+    $.ajax({
+        type: 'POST',
+        url: "/vehicle/remove/" + vehicle_id,
+        data: JSON.stringify(vehicle_id),
+        datatype: 'json',
+        contentType: 'application/json',
+        async: false,
+        success: function (data) {
+            result = data;
+            alert("vehicle was removed");
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown);
+            $('#submit_eMessage').append(errorThrown);
+        }
+    });
+    alert(id);
 }
 

@@ -1,7 +1,5 @@
 package se.likfarmenhet.garage.controller;
 
-import java.sql.SQLException;
-import static javax.management.Query.value;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,14 +24,15 @@ public class CustomerController {
     public Customer createCustomer(@RequestBody Customer customer) {
         System.out.println(customer);
         String ssn = customer.getSsn();
-        if (ssn.equalsIgnoreCase(findBySsn(ssn).getSsn())) {
-            System.out.println("trying to update");
-            updateCustomer(customer);
-        } else {
+        try {
+            if (ssn.equalsIgnoreCase(findBySsn(ssn).getSsn())) {
+                System.out.println("trying to update"); 
+                updateCustomer(customer);
+            }
+        } catch (NullPointerException e) {
             System.out.println("didnt find customer with same ssn, saving");
             customer = customerRepository.save(customer);
         }
-
         return customer;
     }
 
