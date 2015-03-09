@@ -15,8 +15,8 @@ import javax.persistence.Id;
 public class Mechanic implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer employee_number;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     @Column
     private String first_name;
     @Column
@@ -26,15 +26,15 @@ public class Mechanic implements Serializable {
 
     @Override
     public String toString() {
-        return "Mechanic{" + ", employee_number=" + employee_number + ", first_name=" + first_name + ", last_name=" + last_name + '}';
+        return "Mechanic{" + "id=" + id + ", first_name=" + first_name + ", last_name=" + last_name + '}';
     }
 
-    public Integer getEmployee_number() {
-        return employee_number;
+    public Integer getId() {
+        return id;
     }
 
-    public void setEmployee_number(int employee_number) {
-        this.employee_number = employee_number;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getFirst_name() {
@@ -52,5 +52,7 @@ public class Mechanic implements Serializable {
     public void setLast_name(String last_name) {
         this.last_name = last_name;
     }
+
+   
 
 }

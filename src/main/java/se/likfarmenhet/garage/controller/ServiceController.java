@@ -38,6 +38,7 @@ public class ServiceController {
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public Iterable<Service> findAllServices() {
         Iterable<Service> services = serviceRepository.findAll();
+        System.out.println(services);
         return services;
     }
     
@@ -48,15 +49,15 @@ public class ServiceController {
     
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
     public Service updateService(@RequestBody Service service) {
-        if (service.getService_id() == null) {
+        if (service.getId() == null) {
             throw new RuntimeException("NOT FOUND");
         }
         
-        Service original = serviceRepository.findOne(service.getService_id());
+        Service original = serviceRepository.findOne(service.getId());
         
-        original.setCustomer_id(service.getCustomer_id());
-        original.setLicense_plate(service.getLicense_plate());
-        original.setEmployee_number(service.getEmployee_number());
+//        original.setCustomer_id(service.getCustomer_id());
+//        original.setLicense_plate(service.getLicensePlate());
+//        original.setEmployee_number(service.getEmployee_number());
         original.setService_date(service.getService_date());
         original.setService_status(service.getService_status());
         original.setDescription(service.getDescription());

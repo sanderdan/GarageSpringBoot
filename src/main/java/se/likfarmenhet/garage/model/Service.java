@@ -1,11 +1,13 @@
 package se.likfarmenhet.garage.model;
 
 import java.io.Serializable;
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -15,58 +17,37 @@ import javax.persistence.Id;
 public class Service implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer service_id;
-    @Column
-    private String customer_id;
-    @Column
-    private String license_plate;
-    @Column
-    private String employee_number;
-    @Column
-    private String service_date;
-    @Column
-    private String service_status;
-    @Column
-    private String description;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
+    private String service_date;
+    private String service_status;
+    private String description;
+    
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//    @JoinColumn(name = "customer_id")
+    private Customer customer;
+    
+    
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Vehicle vehicle;
+    
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Mechanic mechanic;
+    
     public Service() {}
 
     @Override
     public String toString() {
-        return "Service{" + "service_id=" + service_id + ", customer_id=" + customer_id + ", license_plate=" + license_plate + ", employee_number=" + employee_number + ", service_date=" + service_date + ", service_status=" + service_status + ", description=" + description + '}';
+        return "Service{" + "id=" + id + ", service_date=" + service_date + ", service_status=" + service_status + ", description=" + description + ", customer=" + customer + ", vehicle=" + vehicle + ", mechanic=" + mechanic + '}';
     }
 
-    public Integer getService_id() {
-        return service_id;
+    public Integer getId() {
+        return id;
     }
 
-    public void setService_id(int service_id) {
-        this.service_id = service_id;
-    }
-
-    public String getCustomer_id() {
-        return customer_id;
-    }
-
-    public void setCustomer_id(String customer_id) {
-        this.customer_id = customer_id;
-    }
-
-    public String getLicense_plate() {
-        return license_plate;
-    }
-
-    public void setLicense_plate(String license_plate) {
-        this.license_plate = license_plate;
-    }
-
-    public String getEmployee_number() {
-        return employee_number;
-    }
-
-    public void setEmployee_number(String employee_number) {
-        this.employee_number = employee_number;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getService_date() {
@@ -92,5 +73,31 @@ public class Service implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
+
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
+    }
+
+    public Mechanic getMechanic() {
+        return mechanic;
+    }
+
+    public void setMechanic(Mechanic mechanic) {
+        this.mechanic = mechanic;
+    }
+
+   
     
 }

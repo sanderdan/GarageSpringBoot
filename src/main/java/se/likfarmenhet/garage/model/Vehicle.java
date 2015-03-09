@@ -1,11 +1,17 @@
 package se.likfarmenhet.garage.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 /**
  *
@@ -16,34 +22,49 @@ public class Vehicle implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer vehicle_id;
+    private Integer id;
     @Column(name = "license_plate")
     private String licensePlate;
-    @Column
     private String manufacturer;
-    @Column
     private String model;
-    @Column
     private String model_year;
-    @Column
     private String fuel;
-    @Column
     private String odometer;
 
     public Vehicle() {
     }
 
+    @JsonIgnore
+    @ManyToMany(mappedBy = "vehicles", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Customer> customers = new ArrayList<>();
+
     @Override
     public String toString() {
-        return "Vehicle{" + "vehicle_id=" + vehicle_id + ", licensePlate=" + licensePlate + ", manufacturer=" + manufacturer + ", model=" + model + ", model_year=" + model_year + ", fuel=" + fuel + ", odometer=" + odometer + '}';
+        return "Vehicle{" + "id=" + id + ", licensePlate=" + licensePlate + ", manufacturer=" + manufacturer + ", model=" + model + ", model_year=" + model_year + ", fuel=" + fuel + ", odometer=" + odometer + '}';
     }
 
-    public Integer getVehicle_id() {
-        return vehicle_id;
+    public List<Customer> getCustomers() {
+        return customers;
+    }
+
+    public void setCustomers(List<Customer> customers) {
+        this.customers = customers;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getLicensePlate() {
         return licensePlate;
+    }
+
+    public void setLicensePlate(String licensePlate) {
+        this.licensePlate = licensePlate;
     }
 
     public String getManufacturer() {
@@ -86,4 +107,5 @@ public class Vehicle implements Serializable {
         this.odometer = odometer;
     }
 
+   
 }

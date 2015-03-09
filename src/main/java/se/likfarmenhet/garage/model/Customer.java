@@ -1,11 +1,17 @@
 package se.likfarmenhet.garage.model;
 
 import java.io.Serializable;
-import javax.persistence.Column;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 /**
  *
@@ -15,40 +21,45 @@ import javax.persistence.Id;
 public class Customer implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer customer_id;
-    @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String first_name;
-    @Column
     private String last_name;
-    @Column
     private String mail;
-    @Column
     private String phone;
-    @Column
     private String street;
-    @Column
     private String city;
-    @Column
     private String zip;
-    @Column
     private String gender;
-    @Column
     private String ssn;
-
+    
+    
     public Customer() {}
 
     @Override
     public String toString() {
-        return "Customer{" + ", customer_id=" + customer_id + ", first_name=" + first_name + ", last_name=" + last_name + ", mail=" + mail + ", phone=" + phone + ", street=" + street + ", city=" + city + ", zip=" + zip + ", gender=" + gender + ", ssn=" + ssn + '}';
+        return "Customer{" + "id=" + id + ", first_name=" + first_name + ", last_name=" + last_name + ", mail=" + mail + ", phone=" + phone + ", street=" + street + ", city=" + city + ", zip=" + zip + ", gender=" + gender + ", ssn=" + ssn + ", vehicles=" + vehicles + '}';
     }
 
-    public Integer getCustomer_id() {
-        return customer_id;
+ 
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "Customer_vehicles", joinColumns = @JoinColumn(name="customer_id"), inverseJoinColumns = @JoinColumn(name="vehicle_id"))
+    private List<Vehicle> vehicles = new ArrayList<>();
+
+    public List<Vehicle> getVehicles() {
+        return vehicles;
     }
 
-    public void setCustomer_id(int customer_id) {
-        this.customer_id = customer_id;
+    public void setVehicles(List<Vehicle> vehicles) {
+        this.vehicles = vehicles;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getFirst_name() {
@@ -122,5 +133,7 @@ public class Customer implements Serializable {
     public void setSsn(String ssn) {
         this.ssn = ssn;
     }
+
+   
 
 }

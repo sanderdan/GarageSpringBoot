@@ -45,11 +45,11 @@ public class MechanicController {
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
     public Mechanic updateService(@RequestBody Mechanic mechanic) {
-        if (mechanic.getEmployee_number()== null) {
+        if (mechanic.getId()== null) {
             throw new RuntimeException("NOT FOUND");
         }
 
-        Mechanic original = mechanicRepository.findOne(mechanic.getEmployee_number());
+        Mechanic original = mechanicRepository.findOne(mechanic.getId());
         
         original.setFirst_name(mechanic.getFirst_name());
         original.setLast_name(mechanic.getLast_name());

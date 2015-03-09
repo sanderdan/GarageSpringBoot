@@ -51,6 +51,7 @@ public class CustomerController {
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public Iterable<Customer> findAllCustomers() {
         Iterable<Customer> customers = customerRepository.findAll();
+        System.out.println(customers);
         return customers;
     }
 

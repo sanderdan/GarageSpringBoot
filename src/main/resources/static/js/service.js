@@ -49,18 +49,10 @@ function getAll() {
                 for (var i = 0; i < data.length; i++) {
                     (function (i) {
 //                var id = data[i].service_id;
-                        var customer = $.getJSON("/customer/" + data[i].customer_id);
-                        console.log(customer);
                         tr = $('<tr/>');
                         tr.append("<td>" + data[i].service_id + "</td>");
-                        tr.append("<td>" + customer.first_name + "</td>");
-//                tr.append("<td>" + data[i].mail + "</td>");
-//                tr.append("<td>" + data[i].phone + "</td>");
-//                tr.append("<td>" + data[i].street + "</td>");
-//                tr.append("<td>" + data[i].city + "</td>");
-//                tr.append("<td>" + data[i].zip + "</td>");
-//                tr.append("<td>" + data[i].gender + "</td>");
-//                tr.append("<td>" + data[i].ssn + "</td>");
+                        tr.append("<td>" + data[i].customer.first_name + "</td>");
+
 //                tr.append('<button id="' + data[i].customer_id + '">X</button>')
 //                        .click(function () {
 //                            removeCustomer(id);
