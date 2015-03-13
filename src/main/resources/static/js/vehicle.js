@@ -1,7 +1,6 @@
 $(document).ready(function () {
     getAll();
     $('#vehicle_form').submit(function (event) {
-        $('#submit_eMessage').empty();
         event.preventDefault();
         var vehicle = {};
         $(this).serializeArray().map(function (x) {
@@ -17,16 +16,16 @@ $(document).ready(function () {
             async: false,
             success: function (data) {
                 result = data;
+                alert("Vehicle info added");
+                window.location.reload();
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.log(jqXHR);
                 console.log(textStatus);
                 console.log(errorThrown);
-                $('#submit_eMessage').append(errorThrown);
             }
         });
     });
-
     $('#checkLicensePlate').click(function () {
         checkLicensePlate();
     });
@@ -37,16 +36,16 @@ function getAll() {
         var tr;
         for (var i = 0; i < data.length; i++) {
             (function (i) {
-                var id = data[i].vehicle_id;
+                var id = data[i].id;
                 tr = $('<tr/>');
-                tr.append("<td>" + data[i].vehicle_id + "</td>");
+                tr.append("<td>" + data[i].id + "</td>");
                 tr.append("<td>" + data[i].licensePlate + "</td>");
                 tr.append("<td>" + data[i].manufacturer + "</td>");
                 tr.append("<td>" + data[i].model + "</td>");
                 tr.append("<td>" + data[i].model_year + "</td>");
                 tr.append("<td>" + data[i].fuel + "</td>");
                 tr.append("<td>" + data[i].odometer + "</td>");
-                tr.append('<button id="' + data[i].customer_id + '">X</button>')
+                tr.append('<button id="' + data[i].id + '">X</button>')
                         .click(function () {
                             removeVehicle(id);
                         });
@@ -55,7 +54,6 @@ function getAll() {
         }
     });
 }
-
 
 function checkLicensePlate() {
     $('#eMessage').empty();
@@ -74,32 +72,35 @@ function checkLicensePlate() {
             $('#odometer').val(data.odometer);
         },
         error: function (data, status, er) {
-            $('#eMessage').append(status);
+            $('#eMessage').append("Car doesn´t exist, please submit vehicle below");
         }
     });
 }
 
 
 function removeVehicle(id) {
-    var vehicle_id = id;
-    $.ajax({
-        type: 'POST',
-        url: "/vehicle/remove/" + vehicle_id,
-        data: JSON.stringify(vehicle_id),
-        datatype: 'json',
-        contentType: 'application/json',
-        async: false,
-        success: function (data) {
-            result = data;
-            alert("vehicle was removed");
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            console.log(jqXHR);
-            console.log(textStatus);
-            console.log(errorThrown);
-            $('#submit_eMessage').append(errorThrown);
-        }
-    });
-    alert(id);
+    var r = confirm("Are you sure you want to remove Vehicle " + id + "?");
+    if (r == true) {
+        $.ajax({
+            type: 'POST',
+            url: "/vehicle/remove/" + id,
+            data: JSON.stringify(id),
+            datatype: 'json',
+            contentType: 'application/json',
+            async: false,
+            success: function (data) {
+                result = data;
+                console.log("Vehicle " + id + " was removed");
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR);
+                console.log(textStatus);
+                console.log(errorThrown);
+                $('#submit_eMessage').append(errorThrown);
+            }
+        });
+        window.location.reload();
+    } else {
+        console.log("Vehicle " + id + " wasn't removed");
+    }
 }
-

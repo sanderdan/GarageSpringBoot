@@ -1,9 +1,3 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <title>ROMA</title>
@@ -11,77 +5,99 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+        <link href='http://fonts.googleapis.com/css?family=Share' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="/css/index.css">
         <!-- Latest compiled and minified JavaScript -->
-        <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-        <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
         <script src="/js/customer.js"></script>
     </head>
     <body>
-        <h2>Customer Info</h2>
-        <form class="form-horizontal" id="customer_form" role="form">
-            <div class="form-group">
-                <label class="control-label col-sm-2" for="ssn">SSN:</label>
-                <div class="col-sm-2">
-                    <input name="ssn" type="text" class="form-control" id="ssn" placeholder="Ex. 123456-1234">
-                    <button type="button" class="btn btn-info" id="checkSSN">Check for Customer</button>
+        <div class="container">
+            <div id="header">
+                <h1>PROFFSKODS BILFIRMA</h1>
+            </div>
+            <h3>Create or Edit a Customer</h3>
+            <form class="form-horizontal" id="customer_form" role="form">
+                <div class="form-group">
+                    <label class="control-label col-sm-2">SSN:</label>
+                    <div class="col-sm-2">
+                        <input name="ssn" type="text" class="form-control" id="ssn" maxlength="12" placeholder="YYYYMMMDD1234" required="">
+                        <button type="button" class="btn btn-info" id="checkSSN">Edit</button>
+                        <p id="eMessage"></p>
+                    </div>
+                    <div class="hint">(12 letters)</div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-sm-2">First Name:</label>
-                <div class="col-sm-10">
-                    <input type="text" name="first_name" class="form-control" id="first_name" placeholder="first name">
+                <div class="form-group">
+                    <label class="control-label col-sm-2">First Name:</label>
+                    <div class="col-sm-3">
+                        <input type="text" name="first_name" class="form-control" id="first_name" required="">
+                    </div>
+                    <div class="col-sm-7"></div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-sm-2">Last Name:</label>
-                <div class="col-sm-10">
-                    <input type="text" name="last_name" class="form-control" id="last_name" placeholder="last name">
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Last Name:</label>
+                    <div class="col-sm-3">
+                        <input type="text" name="last_name" class="form-control" id="last_name" required="">
+                    </div>
+                    <div class="col-sm-7"></div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-sm-2">Mail: </label>
-                <div class="col-sm-10">
-                    <input type="text" name="mail" class="form-control" id="mail" placeholder="ex. fredde990@gmail.com">
-                </div>  
-            </div>
-            <div class="form-group">
-                <label class="control-label col-sm-2">Phone:</label>
-                <div class="col-sm-10">
-                    <input type="text" name="phone" class="form-control" id="phone" placeholder="10 numbers">
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Mail: </label>
+                    <div class="col-sm-3">
+                        <input type="email" name="mail" class="form-control" id="mail">
+                    </div>  
+                    <div class="col-sm-7"></div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-sm-2">Street:</label>
-                <div class="col-sm-10">
-                    <input type="text" name="street" class="form-control" id="street" placeholder="Ex. Övre husargatan">
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Phone:</label>
+                    <div class="col-sm-3">
+                        <input type="text" name="phone" class="form-control" id="phone">
+                    </div>
+                    <div class="col-sm-7"></div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-sm-2">City:</label>
-                <div class="col-sm-10">
-                    <input type="text" name="city" class="form-control" id="city" placeholder="Ex. Estocolmo">
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Street:</label>
+                    <div class="col-sm-3">
+                        <input type="text" name="street" class="form-control" id="street">
+                    </div>
+                    <div class="col-sm-7"></div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-sm-2">Zip:</label>
-                <div class="col-sm-10">
-                    <input type="text" name="zip" class="form-control" id="zip" placeholder="Ex. 41422">
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Zip:</label>
+                    <div class="col-sm-3">
+                        <input type="text" name="zip" class="form-control" id="zip">
+                    </div>
+                    <div class="col-sm-7"></div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-sm-2">Gender:</label>
-                <div class="col-sm-10">
-                    <input type="text" name="gender" class="form-control" id="gender" placeholder="M or F">
+                <div class="form-group">
+                    <label class="control-label col-sm-2">City:</label>
+                    <div class="col-sm-3">
+                        <input type="text" name="city" class="form-control" id="city">
+                    </div>
+                    <div class="col-sm-7"></div>
                 </div>
-            </div>
-
-            <div class="form-group">        
-                <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-default" id="submit">Submit</button>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Gender:</label>
+                    <div class="col-sm-2">
+                        <select name="gender" class="form-control" id="gender">
+                            <option value=" " disabled selected>Select</option>
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-8"></div>
                 </div>
+                <div class="form-group">        
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default" id="submit">Submit</button>
+                    </div>
+                </div>
+            </form>
+            <div class="toHomeButton">
+                <a href="/index.html"><button class="btn btn-success">Home Page</button></a>
+                <a href="/pages/customer/view.html"><button class="btn btn-warning">View</button></a>
             </div>
-        </form>
-
+        </div>
     </body>
 </html>

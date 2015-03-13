@@ -1,7 +1,12 @@
 $(document).ready(function () {
     getAll();
+
+    // REMOVE OPTION TO ENTER OTHER THAN NUMBERS TO SSN-FIELD
+    $('#ssn').on('input', function (event) {
+        this.value = this.value.replace(/[^0-9]/g, '');
+    });
+
     $('#customer_form').submit(function (event) {
-        $('#submit_eMessage').empty();
         event.preventDefault();
         var customer = {};
         $(this).serializeArray().map(function (x) {
@@ -17,22 +22,18 @@ $(document).ready(function () {
             async: false,
             success: function (data) {
                 result = data;
+                window.location.reload();
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.log(jqXHR);
                 console.log(textStatus);
                 console.log(errorThrown);
-                $('#submit_eMessage').append(errorThrown);
             }
         });
     });
-
     $('#checkSSN').click(function () {
         checkSSN();
     });
-
-
-
 });
 
 //To show stuff as a <table>
@@ -41,9 +42,9 @@ function getAll() {
         var tr;
         for (var i = 0; i < data.length; i++) {
             (function (i) {
-                var id = data[i].customer_id;
+                var id = data[i].id;
                 tr = $('<tr/>');
-                tr.append("<td>" + data[i].customer_id + "</td>");
+                tr.append("<td>" + data[i].id + "</td>");
                 tr.append("<td>" + data[i].first_name + "</td>");
                 tr.append("<td>" + data[i].last_name + "</td>");
                 tr.append("<td>" + data[i].mail + "</td>");
@@ -53,17 +54,15 @@ function getAll() {
                 tr.append("<td>" + data[i].zip + "</td>");
                 tr.append("<td>" + data[i].gender + "</td>");
                 tr.append("<td>" + data[i].ssn + "</td>");
-                tr.append('<button id="' + data[i].customer_id + '">X</button>')
+                tr.append('<button id="' + data[i].id + '">X</button>')
                         .click(function () {
                             removeCustomer(id);
                         });
-
                 $('table').append(tr);
             }(i));
         }
     });
 }
-
 
 function checkSSN() {
     $('#eMessage').empty();
@@ -85,30 +84,34 @@ function checkSSN() {
             $('#gender').val(data.gender);
         },
         error: function (data, status, er) {
-            $('#eMessage').append(status);
+            $('#eMessage').append("Customer doesn´t exist, please submit customer below");
         }
     });
 }
 
 function removeCustomer(id) {
-    var customer_id = id;
-    $.ajax({
-        type: 'POST',
-        url: "/customer/remove/" + customer_id,
-        data: JSON.stringify(customer_id),
-        datatype: 'json',
-        contentType: 'application/json',
-        async: false,
-        success: function (data) {
-            result = data;
-            alert("customer was removed");
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            console.log(jqXHR);
-            console.log(textStatus);
-            console.log(errorThrown);
-            $('#submit_eMessage').append(errorThrown);
-        }
-    });
-    alert(id);
+    var r = confirm("Are you sure you want to remove customer " + id + "?");
+    if (r == true) {
+        $.ajax({
+            type: 'POST',
+            url: "/customer/remove/" + id,
+            data: JSON.stringify(id),
+            datatype: 'json',
+            contentType: 'application/json',
+            async: false,
+            success: function (data) {
+                result = data;
+                console.log("Customer " + id + " was removed");
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR);
+                console.log(textStatus);
+                console.log(errorThrown);
+                $('#submit_eMessage').append(errorThrown);
+            }
+        });
+        window.location.reload();
+    } else {
+        console.log("Customer " + id + " wasn't removed");
+    }
 }

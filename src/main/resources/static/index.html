@@ -6,87 +6,64 @@
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
         <link href='http://fonts.googleapis.com/css?family=Share' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="css/index.css">
+        <link rel="stylesheet" href="/css/index.css">
         <!-- Latest compiled and minified JavaScript -->
         <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
         <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     </head>
     <body>
-
         <div class="container">
-            <h1>PROFFSKODS BILFIRMA</h1>
-            <div class="row" id="columnMenu">
-                <div class="col-md-3" id="customerColumn">
-                    <h3>Customer</h3>
-                    <table class="table">
-                        <tr>
-                            <th><a href="/pages/customer/view.html">View all customers</a></th>
-                        </tr>
-                        <tr>
-                            <th><a href="/pages/customer/create.html">Add a new customer</a></th>
-                        </tr>
-                        <tr>
-                            <th><a>Edit an existing customer</a></th>
-                        </tr>
-                        <tr>
-                            <th><a>Remove a customer</a></th>
-                        </tr>
-                    </table>
-                </div>
-                <div class="col-md-3" id="vehicleColumn">
-                    <h3>Vehicle</h3>
-                    <table class="table">
-                        <tr>
-                            <th><a href="/pages/vehicle/view.html">View all vehicles</a></th>
-                        </tr>
-                        <tr>
-                            <th><a href="/pages/vehicle/create.html">Add a new vehicle</a></th>
-                        </tr>
-                        <tr>
-                            <th><a>Edit an existing vehicle</a></th>
-                        </tr>
-                        <tr>
-                            <th><a>Remove a vehicle</a></th>
-                        </tr>
-                    </table>
-                </div>
-                <div class="col-md-3" id="mechanicColumn">
-                    <h3>Mechanic</h3>
-                    <table class="table">
-                        <tr>
-                            <th><a>View all mechanics</a></th>
-                        </tr>
-                        <tr>
-                            <th><a>Add a new mechanic</a></th>
-                        </tr>
-                        <tr>
-                            <th><a>Edit an existing mechanic</a></th>
-                        </tr>
-                        <tr>
-                            <th><a>Remove a mechanic</a></th>
-                        </tr>
-                    </table>
-                </div>
-                <div class="col-md-3" id="serviceColumn">
-                    <h3>Service</h3>
-                    <table class="table">
-                        <tr>
-                            <th><a href="/pages/service/view.html">View all services</a></th>
-                        </tr>
-                        <tr>
-                            <th><a href="/pages/service/create.html">Create a service</a></th>
-                        </tr>
-                        <tr>
-                            <th><a>Edit an existing service</a></th>
-                        </tr>
-                        <tr>
-                            <th><a>Remove a service</a></th>
-                        </tr>
-                    </table>
-                </div>
+            <div id="header">
+                <h1>PROFFSKODS BILFIRMA</h1>
+            </div>
+            <div class="col-md-3" id="customerColumn">
+                <div class="titles">Customer</div>
+                <table class="table">
+                    <tr>
+                        <th><a href="/pages/customer/create.html">Create a Customer<br/>Edit a Customer</a></th>
+                    </tr>
+                    <tr>
+                        <th><a href="/pages/customer/view.html">View all Customers<br/>Remove a Customer</a></th>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-3" id="vehicleColumn">
+                <div class="titles">Vehicle</div>
+                <table class="table">
+                    <tr>
+                        <th><a href="/pages/vehicle/create.html">Create a Vehicle<br/>Edit a Vehicle</a></th>
+                    </tr>
+                    <tr>
+                        <th><a href="/pages/vehicle/view.html">View all Vehicles<br/>Remove a Vehicle</a></th>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-3" id="mechanicColumn">
+                <div class="titles">Mechanic</div>
+                <table class="table">
+                    <tr>
+                        <th><a href="/pages/mechanic/create.html">Create a Mechanic<br/>Edit a Mechanic</a></th>
+                    </tr>
+                    <tr>
+                        <th><a href="/pages/mechanic/view.html">View all Mechanics<br/>Remove a Mechanic</a></th>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-3" id="serviceColumn">
+                <div class="titles">Service</div>
+                <table class="table">
+                    <tr>
+                        <th><a href="/pages/service/create.html">Create a Service<br/>Edit a Service</a></th>
+                    </tr>
+                    <tr>
+                        <th><a href="/pages/service/view.html">View all Services<br/>Remove a Service</a></th>
+                    </tr>
+                </table>
             </div>
         </div>
-
+        <div class="statlink">
+            <a href="/pages/service/stats.html"><button class="btn btn-success">Statistics</button></a>
+        </div>
     </body>
 </html>

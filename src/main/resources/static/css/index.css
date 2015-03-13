@@ -1,5 +1,6 @@
 body {
     font-family: 'Share', cursive;
+    overflow-y: scroll;    
 }
 body h1 {
     text-align: center;
@@ -7,16 +8,36 @@ body h1 {
 body a,
 body a:focus {
     color: black;
+    text-decoration: none;
 }
-#columnMenu {
+body h3 {
+    margin-left: 115px;
+    margin-bottom: 20px;
+}
+input {
+    text-align: center;
+}
+#header {
     margin-top: 15px;
+}
+.titles {
+    margin-left: 5px;
+    font-size: 28px;
+}
+.statlink {
+    margin-top: 15px;
+    text-align: center;
+}
+.toHomeButton {
+    margin-top: 10px;
+    text-align: center;
 }
 #customerColumn {
     border-bottom: 1px solid black;
     border-left: 1px solid black;
     border-top: 1px solid black;
 }
-#customerColumn h3 {
+#customerColumn .titles {
     color: green;
 }
 #customerColumn a:hover {
@@ -28,7 +49,7 @@ body a:focus {
     border-left: 1px solid black;
     border-top: 1px solid black;
 }
-#vehicleColumn h3 {
+#vehicleColumn .titles {
     color: orange;
 }
 #vehicleColumn a:hover {
@@ -40,7 +61,7 @@ body a:focus {
     border-left: 1px solid black;
     border-top: 1px solid black;
 }
-#mechanicColumn h3 {
+#mechanicColumn .titles {
     color: red;
 }
 #mechanicColumn a:hover {
@@ -53,14 +74,41 @@ body a:focus {
     border-top: 1px solid black;
     border-right: 1px solid black;
 }
-#serviceColumn h3 {
+#serviceColumn .titles {
     color: blue;
 }
 #serviceColumn a:hover {
     color: blue;
     text-decoration: none;
 }
-#button {
-    color: red;
-    background-color: red;
+.btn-info {
+    margin-bottom: 30px;
+}
+.hint {
+    padding-top: 7px;
+    font-style: italic;
+}
+
+// SERVICE
+.year {
+}
+#year {
+    width: 80px;
+    margin-left: 15px;
+}
+.month{
+    width: 110px;
+}
+.day,
+#hour,
+#minute {
+    width: 75px;
+}
+.dateandtime {
+    display: inline-block;
+}
+.timetitle {
+    margin-left: 15px;
+    margin-right: 10px;
+    font-weight: bold;
 }

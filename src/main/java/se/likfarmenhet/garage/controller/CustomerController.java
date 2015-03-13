@@ -22,23 +22,20 @@ public class CustomerController {
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public Customer createCustomer(@RequestBody Customer customer) {
-        System.out.println(customer);
         String ssn = customer.getSsn();
         try {
             if (ssn.equalsIgnoreCase(findBySsn(ssn).getSsn())) {
-                System.out.println("trying to update"); 
                 updateCustomer(customer);
             }
         } catch (NullPointerException e) {
-            System.out.println("didnt find customer with same ssn, saving");
             customer = customerRepository.save(customer);
         }
         return customer;
     }
 
-    @RequestMapping(value = "/{customer_id}", method = RequestMethod.GET)
-    public Customer findCustomerById(@PathVariable int customer_id) {
-        Customer customer = customerRepository.findOne(customer_id);
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public Customer findCustomerById(@PathVariable int id) {
+        Customer customer = customerRepository.findOne(id);
         return customer;
     }
 
@@ -51,20 +48,16 @@ public class CustomerController {
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public Iterable<Customer> findAllCustomers() {
         Iterable<Customer> customers = customerRepository.findAll();
-        System.out.println(customers);
         return customers;
     }
 
-    @RequestMapping(value = "/remove/{customer_id}", method = RequestMethod.POST)
-    public void removeCustomer(@PathVariable int customer_id) {
-        customerRepository.delete(customer_id);
+    @RequestMapping(value = "/remove/{id}", method = RequestMethod.POST)
+    public void removeCustomer(@PathVariable int id) {
+        customerRepository.delete(id);
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
     public Customer updateCustomer(@RequestBody Customer customer) {
-//        if (customer.getCustomer_id() == null) {
-//            throw new RuntimeException("NOT FOUND");
-//        }
 
         Customer original = customerRepository.findBySsn(customer.getSsn());
 

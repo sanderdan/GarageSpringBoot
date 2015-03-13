@@ -21,7 +21,7 @@ import javax.persistence.ManyToMany;
 public class Vehicle implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(name = "license_plate")
     private String licensePlate;
@@ -30,25 +30,15 @@ public class Vehicle implements Serializable {
     private String model_year;
     private String fuel;
     private String odometer;
-
-    public Vehicle() {
-    }
-
     @JsonIgnore
     @ManyToMany(mappedBy = "vehicles", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Customer> customers = new ArrayList<>();
 
+    public Vehicle() {}
+
     @Override
     public String toString() {
         return "Vehicle{" + "id=" + id + ", licensePlate=" + licensePlate + ", manufacturer=" + manufacturer + ", model=" + model + ", model_year=" + model_year + ", fuel=" + fuel + ", odometer=" + odometer + '}';
-    }
-
-    public List<Customer> getCustomers() {
-        return customers;
-    }
-
-    public void setCustomers(List<Customer> customers) {
-        this.customers = customers;
     }
 
     public Integer getId() {
@@ -107,5 +97,12 @@ public class Vehicle implements Serializable {
         this.odometer = odometer;
     }
 
-   
+    public List<Customer> getCustomers() {
+        return customers;
+    }
+
+    public void setCustomers(List<Customer> customers) {
+        this.customers = customers;
+    }
+
 }

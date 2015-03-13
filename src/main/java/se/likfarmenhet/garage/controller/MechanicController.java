@@ -22,13 +22,17 @@ public class MechanicController {
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public Mechanic createMechanic(@RequestBody Mechanic mechanic) {
-        mechanic = mechanicRepository.save(mechanic);
+        if(mechanic.getId() == null) {
+            mechanicRepository.save(mechanic);
+        } else {
+            updateMechanic(mechanic);
+        }
         return mechanic;
     }
 
-    @RequestMapping(value = "/{employee_number}", method = RequestMethod.GET)
-    public Mechanic findMechanicByEmployeeNumber(@PathVariable int employee_number) {
-        Mechanic mechanic = mechanicRepository.findOne(employee_number);
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public Mechanic findMechanicById(@PathVariable int id) {
+        Mechanic mechanic = mechanicRepository.findOne(id);
         return mechanic;
     }
 
@@ -44,13 +48,10 @@ public class MechanicController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
-    public Mechanic updateService(@RequestBody Mechanic mechanic) {
-        if (mechanic.getId()== null) {
-            throw new RuntimeException("NOT FOUND");
-        }
+    public Mechanic updateMechanic(@RequestBody Mechanic mechanic) {
 
         Mechanic original = mechanicRepository.findOne(mechanic.getId());
-        
+
         original.setFirst_name(mechanic.getFirst_name());
         original.setLast_name(mechanic.getLast_name());
 

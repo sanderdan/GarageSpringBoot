@@ -1,7 +1,6 @@
 package se.likfarmenhet.garage.model;
 
 import java.io.Serializable;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -19,20 +18,18 @@ public class Service implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
+    
     private String service_date;
     private String service_status;
     private String description;
     
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    @JoinColumn(name = "customer_id")
+    @ManyToOne(fetch = FetchType.EAGER)
     private Customer customer;
     
-    
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Vehicle vehicle;
     
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Mechanic mechanic;
     
     public Service() {}
@@ -97,7 +94,5 @@ public class Service implements Serializable {
     public void setMechanic(Mechanic mechanic) {
         this.mechanic = mechanic;
     }
-
-   
     
 }

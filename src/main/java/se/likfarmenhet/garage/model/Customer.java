@@ -32,6 +32,10 @@ public class Customer implements Serializable {
     private String zip;
     private String gender;
     private String ssn;
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "Customer_vehicles", joinColumns = @JoinColumn(name="customer_id"), inverseJoinColumns = @JoinColumn(name="vehicle_id"))
+    private List<Vehicle> vehicles = new ArrayList<>();
+    
     
     
     public Customer() {}
@@ -40,11 +44,6 @@ public class Customer implements Serializable {
     public String toString() {
         return "Customer{" + "id=" + id + ", first_name=" + first_name + ", last_name=" + last_name + ", mail=" + mail + ", phone=" + phone + ", street=" + street + ", city=" + city + ", zip=" + zip + ", gender=" + gender + ", ssn=" + ssn + ", vehicles=" + vehicles + '}';
     }
-
- 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "Customer_vehicles", joinColumns = @JoinColumn(name="customer_id"), inverseJoinColumns = @JoinColumn(name="vehicle_id"))
-    private List<Vehicle> vehicles = new ArrayList<>();
 
     public List<Vehicle> getVehicles() {
         return vehicles;
@@ -133,7 +132,5 @@ public class Customer implements Serializable {
     public void setSsn(String ssn) {
         this.ssn = ssn;
     }
-
-   
 
 }

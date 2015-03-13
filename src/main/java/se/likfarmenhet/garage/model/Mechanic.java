@@ -1,7 +1,6 @@
 package se.likfarmenhet.garage.model;
 
 import java.io.Serializable;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,9 +16,7 @@ public class Mechanic implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column
     private String first_name;
-    @Column
     private String last_name;
 
     public Mechanic() {}
@@ -52,7 +49,5 @@ public class Mechanic implements Serializable {
     public void setLast_name(String last_name) {
         this.last_name = last_name;
     }
-
-   
 
 }

@@ -22,15 +22,12 @@ public class VehicleController {
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public Vehicle createVehicle(@RequestBody Vehicle vehicle) {
-        System.out.println(vehicle);
         String lp = vehicle.getLicensePlate();
         try {
             if (lp.equalsIgnoreCase(findByLicensePlate(lp).getLicensePlate())) {
-                System.out.println("trying to update");
                 updateVehicle(vehicle);
             }
         } catch (NullPointerException e) {
-            System.out.println("didnt find customer with same ssn, saving");
             vehicle = vehicleRepository.save(vehicle);
         }
         return vehicle;
