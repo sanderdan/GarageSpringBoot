@@ -1,16 +1,22 @@
 # GarageSpringBoot
 
-The SQL-files to create tables and data are located in /resources/Database
-1. Run Garage.sql to create the tables.
-2. Run ExampleData.sql to fill them with data.
+## Installation
+
+Clone this repository.
+
+Open the project with your preference of Java IDE.
 
 To run the project:
-First go into application-context.xml(located in /src/main/resources/META-INF/) and change the values for
-<property name="username" value="USERNAME" />
-<property name="password" value="PASSWORD" />
+First go into application-context.xml(located in /src/main/resources/META-INF/) 
+and change the values for
 
-Then right click on pom.xml, Run Maven --> spring-boot-run
+`<property name="username" value="USERNAME" />`
+Set it to your username on your mysql server.
 
-Open up localhost:8080 in your browser and you should find the index.
+`<property name="password" value="PASSWORD" />`
 
-Have fun! :]
+Run the Bootstrap file(lockated in java/se.likafarmenhet.garage/).
+
+If you don't run into any errors, open up localhost:8080 in your browser and check it out!
+
+
