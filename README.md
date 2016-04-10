@@ -1,4 +1,6 @@
 # GarageSpringBoot
+![](http://i.imgur.com/ByE4sf2.png)
+This project was made for a school asignment.
 
 ## Installation
 
