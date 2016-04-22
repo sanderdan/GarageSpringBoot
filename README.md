@@ -17,7 +17,7 @@ Set it to your username on your mysql server.
 
 `<property name="password" value="PASSWORD" />`
 
-Run the Bootstrap file(lockated in java/se.likafarmenhet.garage/).
+Run the Bootstrap file(located in java/se.likafarmenhet.garage/).
 
 If you don't run into any errors, open up localhost:8080 in your browser and check it out!
 
